@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kodali Merlin - User Experience Designer</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+
+    <style>
+        /* --- Basic Setup --- */
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #121212;
+            color: #E0E0E0;
+            margin: 0;
+            padding: 0;
+            line-height: 1.7;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        a {
+            color: #BB86FC;
+            text-decoration: none;
+            font-weight: 700;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            color: #FFFFFF;
+        }
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #BB86FC;
+            display: inline-block;
+        }
+        h3 {
+            font-size: 2rem;
+            color: #BB86FC;
+            margin-top: 0; 
+            margin-bottom: 10px;
+        }
+        h4 {
+            font-size: 1.25rem;
+            color: #FFFFFF;
+            margin-top: 30px;
+            margin-bottom: 5px;
+        }
+        section {
+            padding: 80px 0;
+        }
+
+        /* --- Navigation Bar --- */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(18, 18, 18, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #333;
+            z-index: 1000;
+        }
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+        nav .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #FFFFFF;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        nav li {
+            margin-left: 30px;
+        }
+        nav a {
+            font-weight: 700;
+        }
+        nav a.button {
+            background-color: #BB86FC;
+            color: #121212;
+            padding: 10px 18px;
+            border-radius: 6px;
+            text-decoration: none;
+        }
+        nav a.button:hover {
+            background-color: #E0E0E0;
+            text-decoration: none;
+        }
+
+        /* --- Hero Section --- */
+        #home {
+            height: calc(100vh - 70px);
+            display: flex;
+            align-items: center;
+            padding-top: 0;
+            position: relative; 
+        }
+        #home h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.2;
+            margin: 0 0 20px 0;
+            position: relative; 
+        }
+        #home h1 span {
+            color: #BB86FC;
+        }
+        #home p {
+            font-size: 1.25rem;
+            max-width: 600px;
+            margin-bottom: 30px;
+            position: relative; 
+        }
+        #home .button {
+            font-size: 1.1rem;
+            font-weight: 700;
+            background-color: #BB86FC;
+            color: #121212;
+            padding: 14px 28px;
+            border-radius: 6px;
+            text-decoration: none;
+            position: relative; 
+        }
+        #home .button:hover {
+            background-color: #E0E0E0;
+            text-decoration: none;
+        }
+
+        /* --- PROJECT CARD STYLES --- */
+        .project-card {
+            display: grid;
+            grid-template-columns: 2fr 3fr; /* 40% image, 60% text */
+            background-color: #1E1E1E;
+            border: 1px solid #333;
+            border-radius: 12px;
+            margin-bottom: 60px;
+            overflow: hidden; /* Keeps image corners rounded */
+            transition: all 0.3s ease;
+        }
+        .project-card:hover {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transform: translateY(-5px);
+        }
+        .project-image-container {
+            background-color: #333;
+            max-height: 450px; /* Constrains image height */
+        }
+        .project-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* This will crop, not stretch */
+            display: block;
+        }
+        .project-text-container {
+            padding: 40px;
+        }
+        .project-subtitle {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: #B0B0B0;
+            margin-top: -5px;
+            margin-bottom: 20px;
+        }
+        .project-block {
+            background-color: #2a2a2a;
+            padding: 20px 30px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 0.95rem;
+        }
+       
+        
+        /* --- ABOUT SECTION STYLES --- */
+        .about-grid-new {
+            display: grid;
+            grid-template-columns: 1fr 2.5fr; 
+            gap: 50px;
+            align-items: center; 
+            margin-bottom: 60px; 
+        }
+        .about-image img {
+            width: 100%;
+            max-width: 250px; 
+            border-radius: 50%; 
+            border: 5px solid #BB86FC;
+            aspect-ratio: 1 / 1; 
+            object-fit: cover;
+        }
+        .about-text-new p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+        .skills-section h4 {
+            font-size: 1.5rem;
+            color: #BB86FC;
+            border-bottom: 1px solid #444;
+            padding-bottom: 8px;
+            margin-top: 40px; 
+        }
+
+        /* --- VISUAL SKILL CARD STYLES --- */
+        .skills-container {
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 15px; /* Space between cards */
+            padding-top: 20px;
+        }
+        .skill-card {
+            display: flex;
+            align-items: center;
+            background-color: #2e2e2e;
+            color: #E0E0E0;
+            padding: 10px 18px;
+            border-radius: 8px; 
+            font-size: 1rem;
+            font-weight: 700;
+            border: 1px solid #444;
+            transition: all 0.2s ease;
+            cursor: default;
+        }
+        .skill-card:hover {
+            background-color: #3f3f3f;
+            border-color: #BB86FC;
+            transform: translateY(-3px); /* Lifts the card on hover */
+        }
+        .skill-card i {
+            font-size: 2rem; /* Icon size */
+            margin-right: 12px; /* Space between icon and text */
+            color: #BB86FC; /* Makes the icon purple */
+        }
+        .skill-card span {
+             display: inline-block;
+             line-height: 2rem; /* Aligns text with icons */
+        }
+        
+        /* === NEW: SCROLL ANIMATION STYLES === */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* === END OF NEW STYLES === */
+
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid #333;
+            margin-top: 60px;
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            nav .container { flex-direction: column; height: auto; padding: 10px; }
+            nav ul { margin-top: 10px; }
+            nav li { margin: 0 10px; }
+            #home { height: auto; padding-top: 120px; padding-bottom: 60px; text-align: center;}
+            
+            .project-card { 
+                grid-template-columns: 1fr; 
+            }
+            .project-text-container {
+                padding: 30px;
+            }
+
+            .about-grid-new { 
+                grid-template-columns: 1fr; 
+                text-align: center;
+            }
+            .about-image {
+                margin-bottom: 20px;
+                display: flex;
+                justify-content: center;
+            }
+            .about-image img {
+                max-width: 200px; 
+            }
+        }
+
+    </style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.fog.min.js"></script>
+</head>
+<body>
+
+    <nav>
+        <div class="container">
+            <div class="logo">Kodali Merlin</div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#work">Work</a></li>
+                <li><a href="#about">About</a></li>
+                <li>
+                    <a href="C:\Users\DELL\Downloads\Merlin Kodali Resume.pdf" target="_blank" class="button">My Resume</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <header id="home">
+        <div class="container">
+            <h1>Hi, I'm Kodali Merlin. A <br><span>User Experience Designer.</span></h1>
+            <p>I design user-centric solutions to complex problems. Passionate about building intuitive digital experiences.</p>
+            <a href="#work" class="button">View My Work</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="work" class="fade-in-section">
+            <div class="container">
+                <h2>Selected Projects</h2>
+
+                <div class="project-card">
+                    <div class="project-image-container">
+                        <img src="C:\Users\DELL\OneDrive\Pictures\Screenshots\Project1.png" alt="Scholar Management App Screenshot">
+                    </div>
+                    <div class="project-text-container">
+                        <h3>Scholar Management Mobile App</h3>
+                        <p class="project-subtitle">An end-to-end mobile app designed to replace an inefficient Google Forms system.</p>
+
+                        <h4>The Problem</h4>
+                        <p>The existing system was manual, clunky, and frustrating. It relied on disconnected Google Forms, causing confusion for students and hours of manual data entry for administrators.</p>
+
+                        <h4>My Role & Process</h4>
+                        <p>As <strong>lead UI/UX Designer and developer</strong>, I followed a full user-centered design process:</p>
+                        <div class="project-block">
+                            <ol>
+                                <li><strong>Research & Wireframing:</strong> Conducted user interviews and mapped core user flows in Figma.</li>
+                                <li><strong>Prototyping & Testing:</strong> Built a high-fidelity, interactive prototype and conducted usability testing with 5 scholars to validate the design.</li>
+                                <li><strong>Development:</strong> Developed the final cross-platform mobile app using Dart (Flutter) and Firebase.</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image-container">
+                        <img src="C:\Users\DELL\OneDrive\Pictures\Screenshots\Project2.png" alt="Financial Needs App Screenshot">
+                    </div>
+                    <div class="project-text-container">
+                        <h3>Financial Needs Application (SIH 2024)</h3>
+                        <p class="project-subtitle">A full-stack mobile application to help rural demographics find optimal financial schemes.</p>
+                        
+                        <h4>The Problem</h4>
+                        <p>Finding the right government financial schemes is an overwhelming process for rural demographics with varying levels of digital literacy.</p>
+
+                        <h4>My Role & Process</h4>
+                        <p>As the <strong>lead UI/UX Designer</strong> for the Smart India Hackathon team, my goal was to design an extremely simple and trustworthy interface.</p>
+                        <div class="project-block">
+                            <ul>
+                                <li><strong>Design:</strong> Created user personas and high-fidelity, accessible prototypes in Figma.</li>
+                                <li><strong>Tech:</strong> The app used a <strong>React Native</strong> interface, a <strong>Flask/ML</strong> backend, and <strong>Looker Studio</strong> for data visualization, which I also designed.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="about" class="fade-in-section">
+            <div class="container">
+                <h2>About Me</h2>
+
+                <div class="about-grid-new">
+                    <div class="about-image">
+                         <img src="C:\Users\DELL\Downloads\profile.jpg" alt="Kodali Merlin">
+                    </div>
+                    <div class="about-text-new">
+                        <p>User-centric designer and B.Tech CSE student (2026) passionate about solving complex user problems. Experienced in the end-to-end design process, from conducting user research and creating wireframes to building high-fidelity, interactive prototypes in Figma.</p>
+                        <p>I combine design thinking with technical skills in app development (Dart/Flutter, React Native) to create accessible and intuitive digital experiences. My background in Data Science and AI helps me analyze complex user data and build smarter products.</p>
+                    </div>
+                </div>
+                
+                <div class="skills-section">
+                    <h4>UX & Design Skills</h4>
+                    <div class="skills-container">
+                        <div class="skill-card"><i class="devicon-figma-plain"></i><span>Figma</span></div>
+                        <div class="skill-card"><i class="devicon-react-original"></i><span>React Native</span></div>
+                        <div class="skill-card"><i class="devicon-flutter-plain"></i><span>Flutter (Dart)</span></div>
+                        <div class="skill-card"><span>User Research</span></div>
+                        <div class="skill-card"><span>Wireframing</span></div>
+                        <div class="skill-card"><span>Prototyping</span></div>
+                        <div class="skill-card"><span>Usability Testing</span></div>
+                    </div>
+
+                    <h4>Technical & Data Skills</h4>
+                    <div class="skills-container">
+                        <div class="skill-card"><i class="devicon-python-plain"></i><span>Python</span></div>
+                        <div class="skill-card"><i class="devicon-tensorflow-original"></i><span>TensorFlow</span></div>
+                        <div class="skill-card"><i class="devicon-azuresqldatabase-plain"></i><span>SQL</span></div>
+                        <div class="skill-card"><span>Scikit-learn</span></div>
+                        <div class="skill-card"><span>Pandas</span></div>
+                        <div class="skill-card"><i class="devicon-googlecloud-plain"></i><span>Looker Studio</span></div>
+                        <div class="skill-card"><span>Power BI</span></div>
+                        <div class="skill-card"><span>Tableau</span></div>
+                        <div class="skill-card"><i class="devicon-azure-plain"></i><span>Microsoft Azure</span></div>
+                        <div class="skill-card"><i class="devicon-oracle-original"></i><span>Oracle Cloud</span></div>
+                        <div class="skill-card"><i class="devicon-git-plain"></i><span>Git/GitLab</span></div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p><a href="httpsStorage: //www.linkedin.com/in/kodali-merlin-ab93a9261/" target="_blank">LinkedIn</a></p>
+            <p>&copy; 2025 Kodali Merlin. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+      VANTA.FOG({
+        el: "#home",
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.00,
+        minWidth: 200.00,
+        highlightColor: 0xbb86fc,  /* This is your purple color */
+        midtoneColor: 0x5a2a91,   /* A darker purple */
+        lowlightColor: 0x121212,  /* Your background color */
+        baseColor: 0x121212,      /* Your background color */
+        blurFactor: 0.80,         /* NEW: Softer */
+        zoom: 0.50,               /* NEW: Less intense */
+        speed: 0.50               /* NEW: Much slower */
+      })
+    </script>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target); // Animates only once
+                }
+            });
+        }, {
+            threshold: 0.1 // Triggers when 10% of the section is visible
+        });
+
+        // Observe all sections with the "fade-in-section" class
+        const sectionsToFade = document.querySelectorAll('.fade-in-section');
+        sectionsToFade.forEach((section) => {
+            observer.observe(section);
+        });
+    </script>
+
+</body>
+</html>
